@@ -12,7 +12,7 @@
 
 6º const dotenv = require('dotenv'); 
 
- 7º const jwt = require('jsonwebtoken');
+7º const jwt = require('jsonwebtoken');
  
 8º const bcrypt = require('bcryptjs');
 

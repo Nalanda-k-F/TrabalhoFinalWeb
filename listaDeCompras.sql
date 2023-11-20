@@ -14,5 +14,4 @@ CREATE TABLE Alimentos (
     Peso DECIMAL(10,2),
     Unidade VARCHAR(5)
 );
-
 select * from pessoa;

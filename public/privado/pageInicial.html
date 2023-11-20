@@ -9,8 +9,20 @@
 </head>
 <body>
    
-    <br>
-    <br>
+    <form action="/submit" method="post">
+        <label for="nome">Nome do alimento:</label><br>
+        <input type="text" id="nome" name="nome"><br>
+        <label for="categoria">Categoria:</label><br>
+        <select id="categoria" name="categoria">
+          <option value="fruta">Fruta</option>
+          <option value="legume">Legume</option>
+          <option value="carne">Carne</option>
+          <!-- Adicione mais opções conforme necessário -->
+        </select><br>
+        <label for="peso">Peso (em kg):</label><br>
+        <input type="number" id="peso" name="peso" step="0.01" min="0"><br>
+        <input type="submit" value="Submit">
+      </form>
 
     <!-- Rodapé -->
     <footer class="rodape" id="contato">

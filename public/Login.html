@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Formulário</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/login.CSS">
+    <link rel="stylesheet" href="./css/login.CSS">
 </head>
 <body>	 
+    <nav>
+        <ul class="menu">
+          <li>
+            <button  class="glow-on-hover"  type="button" onclick="window.location.href='cadastro.html'">Cadastrar</button>
+          </li>
+        </ul>
+      </nav>
 	<div class="page">
-		<nav class="botao">
-            <button class="glow-on-hover" type="button" onclick="window.location.href='cadastro.html'">Cadastrar</button>
-        </nav> 
-		<br>
         <form method="POST" class="formLogin" id="login" >
             <h1>Login</h1>
             <p>Digite os seus dados de acesso no campo abaixo.</p>
-            <p id="error-message" style="color: red;"></p>
+            <div id="message"></div>
 
 			<label for="email">E-mail</label>
             <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autofocus="true" required />
@@ -25,12 +28,27 @@
             <input type="password" id="senha" name="senha" placeholder="Digite sua senha" maxlength="8" required />
            
 			<a href="#" target="_blank" id="esqueceuSenha">Esqueci minha senha?</a>
-			<a href="index.html" target="_blank" >voltar</a>
-            <button type="submit"  value="Acessar" class="btn"  onclick="buscarDados()">Login</button> 
+			<a href="index.html" >voltar</a>
+            <button type="button"  value="Acessar" class="btn"  onclick="buscarDados()">Login</button> 
 		</form>
     </div>
-
 	<script>
+        function displayMessage(message, isSuccess) {
+            var messageElement = document.getElementById('message');
+            messageElement.textContent = message;
+            if (isSuccess) {
+                window.location.href = '/privado/pageInicial.html';
+            } else {
+                messageElement.className = 'alert error';
+               // Limpar os campos de entrada e a mensagem de erro após 5 segundos
+              setTimeout(function() {
+                    document.getElementById('email').value = '';
+                    document.getElementById('senha').value = '';
+                    messageElement.textContent = '';
+                    messageElement.className = ''; // Remove a classe 'error'
+                 }, 5000); // 5000 milissegundos = 5 segundos
+            }
+        }
         function buscarDados() {
             var email = document.getElementById('email').value;
             var senha = document.getElementById('senha').value;
@@ -42,20 +60,14 @@
             },
             body: JSON.stringify({ email: email, senha: senha })
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = '/privado/paginaInicial.html';
-                } else {
-                    errorMessageElement.textContent = data.message;
-                }
-            })
+        .then(response => response.json())
+        .then(data => {
+                // Exibe a mensagem na tela
+                displayMessage(data.message, data.success);
+                })
             .catch((error) => console.error('Erro:', error));
-
-        return false; 
     }
-
     </script>
-
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

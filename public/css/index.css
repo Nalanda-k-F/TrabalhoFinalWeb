@@ -5,45 +5,54 @@ html, body {
   }
   
   body {
-    background-image: url("images/foto1.jpg");
+    background-image: url("./images/foto1.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
    /* Ajusta o tamanho da imagem para cobrir todo o contêiner  */
     background-size: cover; 
     
   }
   /* Estilos para o menu de navegação */
   @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+  .menu {
+    float: right; /* alinha o menu à direita */
+  }
   nav {
     max-width: 1500px; 
     height: 100px;
     /* mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%); 
-    */
-    margin-top: 5px;
+      */
+      margin-top: 3px; 
   }
   nav ul {
-    text-align: right;
+    display: flex;
+    justify-content:right;
+    align-items: center;
     /* background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6); */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);  */
   }
-  
-  nav ul li {
-    display: inline-block;
+  nav li {
+    font-family: 'Open Sans', sans-serif;
+    list-style: none;
+  }
+  nav li a{
+    text-decoration: none;
+    font-weight: bold;
   }
   
   /* div */
   .jumbotron{
     background: rgba(123, 121, 121, 0.737);
     color: rgba(0, 0, 0, 0.5);
-    margin-left: 25%;
-    margin-right: 25%;
+    margin: 0 auto;
 
   }
   .jumbotron h1{
     font-weight: bold;
     text-align: left;
   }
+  
  /* botão*/
- 
 .glow-on-hover {
   width: 220px;
   height: 50px;
@@ -55,8 +64,9 @@ html, body {
   z-index: 0;
   border-radius: 10px;
   font-weight: bold;
+  float: right; /* alinha o botão à direita */
+  margin-left: 10px; /* cria um espaço de 10px à esquerda do botão */
 }
-
 .glow-on-hover:before {
   content: '';
   background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);

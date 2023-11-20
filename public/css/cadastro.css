@@ -1,0 +1,32 @@
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+  }
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+  body {
+      font-family: 'Inter', sans-serif;
+      background-image: url("./images/foto1.jpg");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover; 
+  }
+ /* Mensagem de alerta */
+.alert {
+    padding: 15px;
+    margin-bottom: 15px;
+    width: 20%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+}
+.alert.success {
+    background-color: #4CAF50; /* Green */
+    color: black; /* Black text */
+}
+.alert.error {
+    background-color: #f44336; /* Red */
+    color: white; /* White text */
+}

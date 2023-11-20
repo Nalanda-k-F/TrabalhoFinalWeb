@@ -42,16 +42,28 @@ html, body {
   
   /* div */
   .jumbotron{
-    background: rgba(123, 121, 121, 0.737);
+    position: relative; /* Define a posição relativa no elemento pai */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     color: rgba(0, 0, 0, 0.5);
     margin: 0 auto;
-
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background: linear-gradient(to right, #ddaeb5, #bd769a);
   }
   .jumbotron h1{
     font-weight: bold;
-    text-align: left;
+    text-align: center;
   }
-  
+  .hr{
+    border-top: 4px dashed #bd769a; 
+  }
+  p{
+    text-align: justify;
+  }
+  .lead b{
+    font-weight: bold;
+  }
  /* botão*/
 .glow-on-hover {
   width: 220px;

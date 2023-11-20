@@ -12,33 +12,33 @@
 <body>
 
  <div class="container mt-4">
-    <div class="card">
+        <form id="meuForm"  method="POST" class="form"  >
         <div class="card-body">
-          <H1> Cadastrar </H1>
-          <div id="message"></div>
+            <H1> Cadastrar </H1>
+            <div id="message"></div>
         </div>
-        <form id="meuForm"  method="POST" class="formLogin"  >
         <div class="form-group">
             <label for="nome">Nome:</label>
-            <input type="text" class="form-control" id="nome" name="nome">
+            <input type="text" class="form-control" id="nome" required name="nome">
         </div>
         <div class="form-group">
             <label for="email">E-mail:</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" required name="email">
         </div>
         <div class="form-group">
             <label for="senha">senha:</label>
-            <input type="password" class="form-control" id="senha" name="senha" maxlength="8">
+            <input type="password" class="form-control" id="senha" required name="senha" maxlength="8">
         </div>
         <div class="form-group">
             <label for="confirmarsenha"> Confirmar senha:</label>
-            <input type="password" class="form-control" id="confirmarsenha" name="confirmarsenha" maxlength="8">
+            <input type="password" class="form-control" id="confirmarsenha" required name="confirmarsenha" maxlength="8">
         </div>
             <button type="button" onclick="enviarDados()">Enviar</button>
             <button type="reset" >Limpar</button>
+             <a href="index.html" >voltar</a>
         </form>
-    </div>
 </div>
+
 <script>
     function displayMessage(message, isSuccess) {
     var messageElement = document.getElementById('message');

@@ -15,6 +15,7 @@ app.use(express.json());
 const public = path.join(__dirname,'/public');
 app.use(express.static(public));
 
+
 // Analisar corpos codificados em URL (comforme a sentença dos formulários html)
 app.use(express.urlencoded({extended:false}));
 // Para analisar o que for enviado pelo cliente
@@ -23,6 +24,10 @@ app.use(express.json());
 //primeira pagina
 app.get('/',(req, res) =>{
     res.render('index.html');
+});
+//primeira pagina
+app.get('/sobre',(req, res) =>{
+    res.render('sobre.html');
 });
 
 // COLOCAR AS INFORMAÇÕRS DO BANCO DE DADOS PROTEGIDAS 

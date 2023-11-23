@@ -43,6 +43,6 @@ Neste exemplo, `origin` é o nome do repositório remoto e `main` é a branch qu
    
 3. **Faça um commit das suas alterações**: Depois de adicionar as alterações ao Staging Area, você pode fazer um commit dessas alterações usando o comando `git commit`. Você deve incluir uma mensagem de commit que descreva as alterações que você fez. Por exemplo, você pode usar `git commit -m "Sua mensagem de commit"`.
 
-4. **Envie as alterações para o repositório remoto**: Finalmente, você pode enviar as alterações que você cometeu para o repositório remoto usando o comando `git push`. Se você estiver enviando para o repositório remoto pela primeira vez, você pode precisar definir o repositório remoto usando `git push -u origin nome-da-branch`.
+4. **Envie as alterações para o repositório remoto**: Finalmente, você pode enviar as alterações que você cometeu para o repositório remoto usando o comando `git push`. Se você estiver enviando para o repositório remoto pela primeira vez, você pode precisar definir o repositório remoto usando `git push -u origin main`.
 
 Por favor, note que você precisa substituir `nome-do-arquivo` e `Sua mensagem de commit` com o nome do arquivo que você modificou e a sua mensagem de commit, respectivamente. Além disso, substitua `nome-da-branch` pelo nome da branch para a qual você deseja enviar as alterações.

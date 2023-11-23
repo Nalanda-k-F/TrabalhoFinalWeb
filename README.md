@@ -2,7 +2,7 @@
 
 
 ####### AVISO ####### 
-Para fazer tais comando deve estar na pasta raiz, no caso deste arquivo o comando é cd TrabalhoFinalWeb deve ser feito no terminal.
+Para fazer tais comandos deve estar na pasta raiz, no caso deste arquivo o comando é cd TrabalhoFinalWeb deve ser feito no terminal.
 
 ################ BAIXAR no terminal ################# 
 1º npm init -y;

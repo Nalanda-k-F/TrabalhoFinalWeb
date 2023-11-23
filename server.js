@@ -1,10 +1,11 @@
 const express = require('express');
 const mysql = require('mysql')
-const path = require('path');
-const dotenv = require('dotenv'); 
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const session = require('express-session'); // privar
+const path = require('path'); // Ele pode ser usado para transformar, resolver ou normalizar caminhos de arquivo.
+const dotenv = require('dotenv'); //É um módulo que carrega variáveis de ambiente de um arquivo .env
+const jwt = require('jsonwebtoken');/*É uma biblioteca que implementa tokens JSON Web (JWT). 
+JWTs são úteis para autenticação e troca segura de informações entre partes.*/
+const bcrypt = require('bcryptjs');//É uma biblioteca para hash e verificação de senhas.
+const session = require('express-session'); // É um middleware para o Express que gerencia sessões. 
 
 const port = 3000;
 

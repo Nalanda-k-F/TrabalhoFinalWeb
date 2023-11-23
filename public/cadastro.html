@@ -12,43 +12,72 @@
 <body>
 
  <div class="container mt-4">
-        <form id="meuForm"  method="POST" class="form"  >
+        <form id="meuForm"  method="POST" class="formCadastro w-75 p-3"  >
         <div class="card-body">
             <H1> Cadastrar </H1>
             <div id="message"></div>
         </div>
         <div class="form-group">
-            <label for="nome">Nome:</label>
+            <label for="nome" >Nome:</label>
             <input type="text" class="form-control" id="nome" required name="nome">
         </div>
         <div class="form-group">
-            <label for="email">E-mail:</label>
+            <label for="email" >E-mail:</label>
             <input type="email" class="form-control" id="email" required name="email">
         </div>
-        <div class="form-group">
-            <label for="senha">senha:</label>
-            <input type="password" class="form-control" id="senha" required name="senha" maxlength="8">
+        <div class="row">
+            <div class="col">
+                <label for="senha">senha:</label>
+                <input type="password" class="form-control" id="senha" required name="senha" maxlength="8">
+             </div>
+            <div class="col">
+                <label for="confirmarsenha"> Confirmar senha:</label>
+                <input type="password" class="form-control" id="confirmarsenha" required name="confirmarsenha" maxlength="8">
+             </div>
+          </div>
+
+          <a href="index.html" class="w-25 p-3" >&#8672; voltar</a>
+
+        <div class="row">
+            <div class="col"style="text-align: right;">
+                <button type="button"  class="btn" onclick="enviarDados()">Enviar</button>
+                <button type="reset" onclick="limparDados()" class="btn" >Limpar</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="confirmarsenha"> Confirmar senha:</label>
-            <input type="password" class="form-control" id="confirmarsenha" required name="confirmarsenha" maxlength="8">
-        </div>
-            <button type="button" onclick="enviarDados()">Enviar</button>
-            <button type="reset" >Limpar</button>
-             <a href="index.html" >voltar</a>
         </form>
 </div>
 
 <script>
-    function displayMessage(message, isSuccess) {
-    var messageElement = document.getElementById('message');
-    messageElement.textContent = message;
-    if (isSuccess) {
-        messageElement.className = 'alert success';
-    } else {
-        messageElement.className = 'alert error';
+    function limparDados(){
+        document.getElementById('nome').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('senha').value = '';
+        document.getElementById('confirmarsenha').value = '';
+        messageElement.textContent = '';
+        messageElement.className = ''; // Remove a classe 'error'
     }
-}
+
+    function displayMessage(message, isSuccess) {
+            var messageElement = document.getElementById('message');
+            messageElement.textContent = message;
+            if (isSuccess) {
+                messageElement.className = 'alert success';
+                setTimeout(function() {
+                window.location.href = 'login.html'; 
+            }, 5000); // 2000 milissegundos = 2 segundos
+            } else {
+                messageElement.className = 'alert error';
+               // Limpar os campos de entrada e a mensagem de erro após 5 segundos
+              setTimeout(function() {
+                    document.getElementById('nome').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('senha').value = '';
+                    document.getElementById('confirmarsenha').value = '';
+                    messageElement.textContent = '';
+                    messageElement.className = ''; // Remove a classe 'error'
+                 }, 5000); // 5000 milissegundos = 5 segundos
+            }
+        }
 
     function enviarDados() {
         var nome = document.getElementById('nome').value;

@@ -15,7 +15,7 @@ html, body {
 .alert {
     padding: 15px;
     margin-bottom: 15px;
-    width: 20%;
+    width: 50%;
     border: 1px solid transparent;
     border-radius: 4px;
     color: white;
@@ -31,3 +31,64 @@ html, body {
     color: white; /* White text */
 }
 /* formulário */
+.formCadastro {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 40px;
+    box-shadow: -10px 10px 0px rgba(33, 33, 33, 1),
+     -20px 20px 0px rgba(33, 33, 33, 0.7), 
+     -30px 30px 0px rgba(33, 33, 33, 0.4), 
+     -40px 40px 0px rgba(33, 33, 33, 0.1);
+    transition: box-shadow 0.3s;
+    gap: 5px;
+}
+.formCadastro:hover {
+    box-shadow: 0 0 16px 2px #000000, 16px 16px 32px 4px #5c5c9e;
+  }
+  
+.formCadastro h1 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 2.3em;
+}
+.formCadastro input:focus {
+    border: 1px solid #f72585;
+}
+.formCadastro label {
+    font-size: 14px;
+    font-weight: 600;
+}
+.formCadastro a {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #555;
+    transition: all linear 160ms;
+}
+.formCadastro a:hover {
+    color: #f72585;
+}
+/* botão */
+.btn {
+    background:#1AAB8A;
+    color:#fff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none !important;
+    transition: all linear 160ms;
+    margin: 0 !important;
+    height: 50px;
+    font-size: 1.1em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding:0 2em;
+    cursor:pointer;
+    outline:none;
+}
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #ff0676;
+}

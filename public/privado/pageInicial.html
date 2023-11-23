@@ -8,21 +8,47 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 <body>
-   
-    <form action="/submit" method="post">
-        <label for="nome">Nome do alimento:</label><br>
-        <input type="text" id="nome" name="nome"><br>
-        <label for="categoria">Categoria:</label><br>
-        <select id="categoria" name="categoria">
-          <option value="fruta">Fruta</option>
-          <option value="legume">Legume</option>
-          <option value="carne">Carne</option>
-          <!-- Adicione mais opções conforme necessário -->
-        </select><br>
-        <label for="peso">Peso (em kg):</label><br>
-        <input type="number" id="peso" name="peso" step="0.01" min="0"><br>
-        <input type="submit" value="Submit">
-      </form>
+    <form method="post" class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <label for="nome">Nome do Item:</label>
+                <input type="text" id="nome" name="nome">
+            </div>
+            <div class="col">
+                 <label for="categoria">Categoria:</label>
+                <select id="categoria" name="categoria">
+                    <option value="fruta">Fruta</option>
+                    <option value="legume">Legume</option>
+                    <option value="carne">Carne</option>
+                    <option value="vegetal">Vegetal</option>
+                    <option value="bebidas">Bebida</option>
+                    <option value="ingredientes">Ingredientes</option>
+                    <option value="ovo">Ovo</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="quantidade">Quantidade:</label>
+                <input type="text" id="quantidade" name="quantidade">
+            </div>
+            <div class="col">
+                <label for="peso">Peso:</label>
+                <select id="peso" name="peso">
+                    <option value="un">UN.</option>
+                    <option value="kg">Kg</option>
+                    <option value="g">g</option>
+                    <option value="ml">ml</option>
+                    <option value="l">L</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="submit" value="Salvar">
+            </div>
+            <div class="col">
+                <input type="submit" value="Adicionar Mais">
+            </div>
+        </div>
+    </form>
+    
 
     <!-- Rodapé -->
     <footer class="rodape" id="contato">
@@ -53,6 +79,16 @@
             </div>
         </div>
     </footer>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
     
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+        }
+    </script>
 </body>
 </html>

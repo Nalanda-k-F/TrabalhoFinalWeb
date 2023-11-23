@@ -21,3 +21,10 @@ JWTs são úteis para autenticação e troca segura de informações entre parte
 
 ####### ABRIR O SITE ####### 
 nodemon server.js OU node server.js
+
+####### ABRIR O SITE ####### 
+Para baixar as atualizações mais recentes de um repositório remoto no Git, você pode usar o comando `git pull`. Este comando busca as alterações do repositório remoto e, em seguida, tenta mesclar essas alterações na sua branch atual.Aqui está um exemplo de como você pode usar este comando:
+``` terminal bash
+git pull origin main
+```
+Neste exemplo, `origin` é o nome do repositório remoto e `main` é a branch que você deseja atualizar.

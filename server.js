@@ -12,7 +12,7 @@ const port = 3000;
 const app = express();
 app.use(express.json());
 
-// artigos estaticos
+// arquivos estaticos
 const public = path.join(__dirname,'/public');
 app.use(express.static(public));
 
@@ -26,7 +26,7 @@ app.use(express.json());
 app.get('/',(req, res) =>{
     res.render('index.html');
 });
-//primeira pagina
+//quem somos
 app.get('/sobre',(req, res) =>{
     res.render('sobre.html');
 });
@@ -76,7 +76,6 @@ app.post('/inserir', (req, res) => {
     });
 });// connetion 1
 });
-
 
 app.use(session({
     secret: 'seu segredo aqui',

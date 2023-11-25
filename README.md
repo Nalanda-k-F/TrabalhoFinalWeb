@@ -39,7 +39,7 @@ Neste exemplo, `origin` é o nome do repositório remoto e `main` é a branch qu
 
 1. **Adicione as alterações ao Staging Area**: Você pode adicionar todos os arquivos modificados usando `git add .`, ou você pode adicionar arquivos específicos usando `git add nome-do-arquivo`.
  
-3. **Incorpore as mudanças do seu projeto remoto com seu projeto local:** O comando 'git pull origin main' busca todas as atualizações da branch main do repositório remoto origin que ainda não existem no seu repositório local e tenta mesclá-las na sua branch atual.
+3. **Incorpore as mudanças do seu projeto remoto com seu projeto local:** O comando **'git pull origin main'** busca todas as atualizações da branch main do repositório remoto origin que ainda não existem no seu repositório local e tenta mesclá-las na sua branch atual.
    
 3. **Faça um commit das suas alterações**: Depois de adicionar as alterações ao Staging Area, você pode fazer um commit dessas alterações usando o comando `git commit`. Você deve incluir uma mensagem de commit que descreva as alterações que você fez. Por exemplo, você pode usar `git commit -m "Sua mensagem de commit"`.
 

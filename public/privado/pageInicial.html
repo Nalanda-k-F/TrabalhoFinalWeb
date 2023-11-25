@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Compras</title>
+    <title>Página da Lista</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
-</head>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css"></head>
 <body>
-    <form method="post" class="container mt-4">
+
+<div class="container page"> 
+    <form id="form" method="post">
         <div class="row">
-            <div class="col">
-                <label for="nome">Nome do Item:</label>
+         <div class="col">
+                <label for="nome">Nome do Item</label>
                 <input type="text" id="nome" name="nome">
             </div>
             <div class="col">
-                 <label for="categoria">Categoria:</label>
+                 <label for="categoria">Categoria</label>
                 <select id="categoria" name="categoria">
                     <option value="fruta">Fruta</option>
                     <option value="legume">Legume</option>
@@ -27,28 +30,31 @@
                 </select>
             </div>
             <div class="col">
-                <label for="quantidade">Quantidade:</label>
+                <label for="quantidade">Quantidade</label>
                 <input type="text" id="quantidade" name="quantidade">
             </div>
             <div class="col">
-                <label for="peso">Peso:</label>
+                <label for="peso">Peso</label>
                 <select id="peso" name="peso">
-                    <option value="un">UN.</option>
+                    <option value="UN">UN.</option>
                     <option value="kg">Kg</option>
                     <option value="g">g</option>
                     <option value="ml">ml</option>
-                    <option value="l">L</option>
+                    <option value="L">L</option>
                 </select>
             </div>
             <div class="col">
-                <input type="submit" value="Salvar">
+                <button type="button"  class="btn" onclick="adicionarDados()"><i class="material-icons">add</i></button>
             </div>
-            <div class="col">
-                <input type="submit" value="Adicionar Mais">
-            </div>
+            <!-- <div class="col">
+                <button type="button"  class="btn" onclick="Dados()"></button>
+            </div> -->
         </div>
     </form>
-    
+</div>
+    <table id="tabelaItens">
+
+      </table>
 
     <!-- Rodapé -->
     <footer class="rodape" id="contato">
@@ -74,21 +80,30 @@
                 <div class="rodape-div-3-coluna">
                     <!-- elemento -->
                     <p><a href="sobre.html">Quem somos</a></p>
-                    <p class="rodape-direitos">Copyright © 2023 – Todos os Direitos Reservados.</p>
+                    <p class="rodape-direitos">© 2023 – Todos os Direitos Reservados para uso Institucional.</p>
                 </div>
             </div>
         </div>
     </footer>
     <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
+        function adicionarDados() {
+            event.preventDefault();
+            var nome = document.getElementById('nome').value;
+            var categoria = document.getElementById('categoria').value;
+            var quantidade = document.getElementById('quantidade').value;
+            var peso = document.getElementById('peso').value;
+            fetch('http://localhost:3000/privado/adicionar_item', {
+               method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+               },
+                body: JSON.stringify({ nome: nome, categoria: categoria, quantidade:quantidade, peso: peso})
+            }) // fetch
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch((error) => console.error('Erro:', error));
         }
-    
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft= "0";
-        }
+        
     </script>
 </body>
 </html>

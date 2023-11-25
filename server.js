@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');/*É uma biblioteca que implementa tokens JS
 JWTs são úteis para autenticação e troca segura de informações entre partes.*/
 const bcrypt = require('bcryptjs');//É uma biblioteca para hash e verificação de senhas.
 const session = require('express-session'); // É um middleware para o Express que gerencia sessões. 
+const { error } = require('console');
 
 const port = 3000;
 
@@ -82,7 +83,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-
 // Middleware para verificar se o usuário está autenticado
 function checkAuth(req, res, next) {
     if (req.session.user) {
@@ -91,9 +91,11 @@ function checkAuth(req, res, next) {
         res.redirect('/');
     }
 }
-
 // Use o middleware de autenticação antes de servir os arquivos estáticos
 app.use('/privado', checkAuth, express.static(path.join(__dirname, 'privado')));
+app.get('/privado/adicionar_item',(req, res) =>{
+    res.render('pageInicial.html');
+});
 
 // login
 app.post('/login', async (req, res) => {
@@ -103,14 +105,27 @@ app.post('/login', async (req, res) => {
         if (error) {
             console.log(error);
         }
-        if (!result || !(await bcrypt.compare(senha, result[0].senha))) {
-            res.status(401).json({success: false, message: 'E-mail ou senha incorretos!' });
+        if (result.length === 0) {
+            res.status(401).json({success: false, message: 'Nenhum usuário encontrado com este e-mail!' });
+        } else if (!(await bcrypt.compare(senha, result[0].senha))) {
+            res.status(401).json({success: false, message: 'Senha incorreta!' });
         } else {
             req.session.user = result[0]; 
             res.json({ success: true });
         }
     });
 });
+// cadastro  e CRUD da pagina de lista 
+app.post('/privado/adicionar_item', (req, res) => {
+    const { nome, categoria, quantidade, peso} = req.body;
+    connection.query('INSERT INTO alimentos (nome, categoria, quantidade, peso) VALUES (?, ?, ?, ?)', [nome, categoria, quantidade, peso], (err, result) => {
+        if (err) {
+        res.status(500).json({ message: 'Erro ao inserir' });
+        } else{
+        res.json({ message: 'Inserido com sucesso', insertId: result.insertId });
+        }
+    });
+});  
 //permite acessar a pagina
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);

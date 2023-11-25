@@ -52,3 +52,32 @@ html,body {
 label {
     display: block;
 }
+/* botão */
+.btn {
+    background:#1AAB8A;
+    color:#fff;
+    border-radius: 50%;
+    transition: all linear 160ms;
+    height: 50px;
+    cursor:pointer;
+    /* remover o contorno de um elemento */
+    outline:none; 
+}
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #ff0676;
+}
+/* linha de código */
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+#form{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+

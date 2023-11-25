@@ -126,6 +126,7 @@ app.post('/privado/adicionar_item', (req, res) => {
         }
     });
 });  
+
 //permite acessar a pagina
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);

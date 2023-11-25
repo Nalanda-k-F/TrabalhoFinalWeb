@@ -97,7 +97,65 @@
                 body: JSON.stringify({ nome: nome, categoria: categoria, quantidade:quantidade, peso: peso})
             }) // fetch
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data);
+                mostrarItens(nome, categoria, quantidade, peso, data.insertId);  // Adiciona o item à tabela
+                setTimeout(function() {
+                    document.getElementById('nome').value = '';
+                    document.getElementById('categoria').value = 'Fruta';
+                    document.getElementById('quantidade').value = '';
+                    document.getElementById('peso').value = 'UN.';
+                 }, 1000);
+            })
+            .catch((error) => console.error('Erro:', error));
+        }
+        
+        // aqui cria a tabela 
+        function mostrarItens() {
+            fetch('http://localhost:3000/privado/mostrar_itens')
+            .then(response => response.json())
+            .then(data => {
+                var tabela = document.getElementById('tabelaItens');
+                // Limpa a tabela antes de preenchê-la
+                tabela.innerHTML = '';
+                data.forEach(item => {
+                    var row = tabela.insertRow();
+                    row.innerHTML = `
+                        <tr>
+                            <td><input type="checkbox" id="checkbox${item.id}"></td>
+                            <td>${item.nome}</td>
+                            <td>${item.categoria}</td>
+                            <td>${item.quantidade}</td>
+                            <td>${item.peso}</td>
+                            <td><button class="delete-button" onclick="deletarItem(${item.id})">Deletar</button></td>
+                        </tr>
+                    `;
+                });
+            })
+            .catch(error => console.error('Erro ao buscar os dados:', error));
+        }
+        window.onload = function() {
+            mostrarItens();
+        }
+
+       // deletar o item
+       function deletarItem(id) {
+            fetch('http://localhost:3000/privado/deletar_item', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: id })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Remove o item da tabela
+                var row = document.getElementById('checkbox' + id).parentNode.parentNode;
+                row.parentNode.removeChild(row);
+                // Atualiza a tabela com os dados do servidor
+                mostrarItens();
+            })
             .catch((error) => console.error('Erro:', error));
         }
     </script>

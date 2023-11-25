@@ -115,6 +115,7 @@ app.post('/login', async (req, res) => {
         }
     });
 });
+
 // cadastro  e CRUD da pagina de lista 
 app.post('/privado/adicionar_item', (req, res) => {
     const { nome, categoria, quantidade, peso} = req.body;
@@ -126,6 +127,28 @@ app.post('/privado/adicionar_item', (req, res) => {
         }
     });
 });  
+
+//Buscar
+app.get('/privado/mostrar_itens',(req, res) => {
+    connection.query('SELECT * FROM alimentos', (err, results)=>{
+        if(err){
+            return res.status(500).json({message: 'Erro ao buscar dados'});
+        }
+        res.json(results);
+    });
+});
+
+//deletar
+app.delete('/privado/deletar_item', (req, res) => {
+    const { id } = req.body;
+    connection.query('DELETE FROM alimentos WHERE id = ?', [id], (err, result) => {
+        if (err) {
+            res.status(500).json({ message: 'Erro ao deletar' });
+        } else {
+            res.json({ message: 'Deletado com sucesso' });
+        }
+    });
+});
 
 //permite acessar a pagina
 app.listen(port, () => {

@@ -89,16 +89,15 @@
 
         // botão sair 
         document.getElementById('logoutButton').addEventListener('click', function() {
-    fetch('/logout', {
-        method: 'POST',
-    })
-    .then(response => {
-        if (response.redirected) {
-            window.location.href = response.url;
-        }
-    });
-});
-
+            fetch('/logout', {
+                method: 'POST',
+            })
+            .then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                }
+            });
+        });
 
         function adicionarDados() {
             event.preventDefault();

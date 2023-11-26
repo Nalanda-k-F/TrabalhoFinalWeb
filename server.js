@@ -85,7 +85,7 @@ app.use(session({
 }));
 // Middleware para verificar se o usuário está autenticado
 function checkAuth(req, res, next) {
-    if (req.session.user) {
+    if (req.session.usuario_id) {
         next();
     } else {
         res.redirect('/');
@@ -100,42 +100,46 @@ app.get('/privado/adicionar_item',(req, res) =>{
 // login
 app.post('/login', async (req, res) => {
     const { email, senha } = req.body;
-    // Buscar o usuário no banco de dados
     connection.query('SELECT * FROM pessoa WHERE email = ?', [email], async (error, result) => {
-        if (error) {
-            console.log(error);
-        }
-        if (result.length === 0) {
-            res.status(401).json({success: false, message: 'Nenhum usuário encontrado com este e-mail!' });
-        } else if (!(await bcrypt.compare(senha, result[0].senha))) {
-            res.status(401).json({success: false, message: 'Senha incorreta!' });
-        } else {
-            req.session.user = result[0]; 
-            res.json({ success: true });
-        }
+      if (error) {
+        console.log(error);
+      }
+      if (result.length === 0) {
+        res.status(401).json({success: false, message: 'Nenhum usuário encontrado com este e-mail!' });
+      } else if (!(await bcrypt.compare(senha, result[0].senha))) {
+        res.status(401).json({success: false, message: 'Senha incorreta!' });
+      } else {
+        req.session.usuario_id = result[0].id; // Armazene o ID do usuário na sessão
+        res.json({ success: true });
+      }
     });
-});
+  });
 
 // cadastro  e CRUD da pagina de lista 
 app.post('/privado/adicionar_item', (req, res) => {
-    const { nome, categoria, quantidade, peso} = req.body;
-    connection.query('INSERT INTO alimentos (nome, categoria, quantidade, peso) VALUES (?, ?, ?, ?)', [nome, categoria, quantidade, peso], (err, result) => {
+    const { nome, categoria, quantidade, peso } = req.body;
+    const usuario_id = req.session.usuario_id;
+    connection.query('INSERT INTO alimentos (nome, categoria, quantidade, peso, usuario_id) VALUES (?, ?, ?, ?, ?)',
+      [nome, categoria, quantidade, peso, usuario_id],
+      (err, result) => {
         if (err) {
-        res.status(500).json({ message: 'Erro ao inserir' });
-        } else{
-        res.json({ message: 'Inserido com sucesso', insertId: result.insertId });
+          res.status(500).json({ message: 'Erro ao inserir' });
+        } else {
+          res.json({ message: 'Inserido com sucesso', insertId: result.insertId });
         }
-    });
-});  
-
+      }
+    );
+  }); 
 //Buscar
-app.get('/privado/mostrar_itens',(req, res) => {
-    connection.query('SELECT * FROM alimentos', (err, results)=>{
-        if(err){
-            return res.status(500).json({message: 'Erro ao buscar dados'});
+app.get('/privado/mostrar_itens', (req, res) => {
+    const usuario_id = req.session.usuario_id;
+    connection.query('SELECT * FROM alimentos WHERE usuario_id = ?',[usuario_id],(err, results) => {
+        if (err) {
+          return res.status(500).json({ message: 'Erro ao buscar dados' });
         }
         res.json(results);
-    });
+      }
+    );
 });
 
 //deletar
@@ -149,6 +153,17 @@ app.delete('/privado/deletar_item', (req, res) => {
         }
     });
 });
+
+//botão sair
+app.post('/logout', function(req, res){
+    req.session.destroy(function(err) {
+       if(err) {
+          console.log(err);
+       } else {
+          res.redirect('/index.html');
+       }
+    });
+ }); 
 
 //permite acessar a pagina
 app.listen(port, () => {

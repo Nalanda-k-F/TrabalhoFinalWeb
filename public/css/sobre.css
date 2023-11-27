@@ -4,7 +4,12 @@
 body {
   font-family: "Josefin Sans", sans-serif;
   background: #1e1e1e;
-  color: whitesmoke;
+  color: whitesmoke; display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('images/Image.png');
+  position: relative;
+  z-index: 1;
 }
 body h1 {
   text-align: center;
@@ -94,7 +99,7 @@ nav {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
+  background-color: rgb(199, 179, 172);
   color: white;
   display: block;
   width: 100%;
